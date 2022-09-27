@@ -11,7 +11,7 @@
 
     <div class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a href="" class="navbar-brand">PHonebook</a>
+            <a href="" class="navbar-brand mx-auto">Admin Panel - PHonebook</a>
         </div>
     </div>
     

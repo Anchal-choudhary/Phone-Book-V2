@@ -6,11 +6,17 @@ use App\Http\Controllers\VcardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 
-Route::controller(UserController::class)->group(function(){
+Route::controller(UserController::class)->middleware("auth")->group(function(){
     Route::get("/","index")->name('homepage');
 });
 
 Route::controller(AuthController::class)->group(function(){
     Route::match(["get","post"],"/login","login")->name('signin');
+    Route::match(["get","post"],"admin/login","adminLogin")->name('admin.login')->middleware('guest');
     Route::match(["get","post"],"/signup","register")->name("signup");
 });
+
+Route::controller(AdminController::class)->middleware('auth')->group(function(){
+    Route::get("admin/","dashboard")->name('dashboard');
+});
+
