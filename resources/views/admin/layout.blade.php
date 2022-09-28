@@ -12,6 +12,13 @@
     <div class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a href="" class="navbar-brand mx-auto">Admin Panel - PHonebook</a>
+
+            @auth('admin')
+            <form action={{route("admin.logout")}} method="POST">
+                @csrf 
+                <input type="submit" class="btn btn-danger" value="Logout">
+            </form>
+        @endauth
         </div>
     </div>
     

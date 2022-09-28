@@ -34,7 +34,13 @@ class AuthController extends Controller
         return view("admin.adminLogin");
     }
     public function logout(){
-        return "fail";
+        Auth::logout();
+        return  redirect()->back();
+    }
+    
+    public function adminLogout(){
+        Auth::guard('admin')->logout();
+        return  redirect()->back();
     }
     
     public function register(Request $req){

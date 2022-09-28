@@ -12,6 +12,14 @@
     <div class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a href="" class="navbar-brand">PHonebook</a>
+
+
+            @auth
+                <form action={{route("logout")}} method="POST">
+                    @csrf 
+                    <input type="submit" class="btn btn-danger" value="Logout">
+                </form>
+            @endauth
         </div>
     </div>
     
