@@ -4,38 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Vcard;
 use Illuminate\Http\Request;
+use Auth;
 
 class VcardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+  
+  
+    public function store(Request $req)
     {
-        //
-    }
+        $name = $req->name;
+        $contact = $req->contact;
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        $vc = new Vcard();
+        $vc->name = $name;
+        $vc->contact = $contact;
+        $vc->user_id = Auth::id();
+        $vc->save();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return redirect()->back()->with("msg","data inserted successfully");
+
+        
     }
 
     /**

@@ -10,6 +10,10 @@ Route::controller(UserController::class)->middleware("auth")->group(function(){
     Route::get("/","index")->name('homepage');
 });
 
+Route::controller(VcardController::class)->middleware('auth')->group(function(){
+    Route::post("/vcard/create","store")->name("vcard.store");
+});
+
 Route::controller(AuthController::class)->group(function(){
     Route::match(["get","post"],"/login","login")->name('signin');
     Route::match(["get","post"],"admin/login","adminLogin")->name('admin.login');
@@ -20,5 +24,7 @@ Route::controller(AuthController::class)->group(function(){
 
 Route::controller(AdminController::class)->middleware('auth:admin')->group(function(){
     Route::get("admin/","dashboard")->name('dashboard');
+    Route::get("admin/manage/user","manageUser")->name('admin.users');
+
 });
 
